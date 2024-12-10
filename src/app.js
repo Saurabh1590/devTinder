@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 
-app.get("/user", (req, res) => {
+app.get("/us|e|r", (req, res) => {
   res.send({firstname: "Saurabh", lastname: "Sahani"})
 });
 
-app.post("/user", (req, res) => {
+app.post("/us*er", (req, res) => {
   res.send("data saved to database sucessfully!");
 });
 
