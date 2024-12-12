@@ -1,30 +1,23 @@
 const express = require("express");
 const app = express();
 
-app.get("/us|e|r", (req, res) => {
-  res.send({firstname: "Saurabh", lastname: "Sahani"})
-});
-
-app.post("/us*er", (req, res) => {
-  res.send("data saved to database sucessfully!");
-});
-
-app.delete("/user", (req, res) => {
-  res.send("Deleted the data sucessfully!");
-});
-
-app.patch("/user", (req, res) => {
-  res.send("Patched the data sucessfully!");
-});
-
-
-app.use("/hello", (req, res) => {
-  res.send("Hello Saurabh 2");
-});
-
-app.use("/", (req, res) => {
-  res.send("Hello Saurabh");
-});
+app.use("/hello", [(req, res, next) => {
+  console.log("1st handler is listened");
+  // res.send("1st handler");
+  next()
+},(req, res, next) => {
+  console.log("2nd Handler is listened");
+  next();
+  // res.send("2nd handler");
+},(req, res, next) => {
+  console.log("3rd Handler is listened");
+  next();
+  // res.send("2nd handler");
+},(req, res, next) => {
+  console.log("4th Handler is listened");
+  next();
+  res.send("4th handler");
+}])
 
 app.listen(7777, () => {
   console.log("Server is listining at port 7777");
