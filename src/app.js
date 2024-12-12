@@ -1,23 +1,25 @@
 const express = require("express");
 const app = express();
 
-app.use("/hello", [(req, res, next) => {
-  console.log("1st handler is listened");
-  // res.send("1st handler");
-  next()
-},(req, res, next) => {
-  console.log("2nd Handler is listened");
-  next();
-  // res.send("2nd handler");
-},(req, res, next) => {
-  console.log("3rd Handler is listened");
-  next();
-  // res.send("2nd handler");
-},(req, res, next) => {
-  console.log("4th Handler is listened");
-  next();
-  res.send("4th handler");
-}])
+const { adminAuth, userAuth } = require("./middleware/auth");
+
+app.use("/admin", adminAuth);
+
+app.use("/user/login", (req, res) => {
+  res.send("User Logined");
+});
+
+app.use("/user/getData", userAuth, (req, res) => {
+  res.send("User fetched the data successfully");
+});
+
+app.use("/admin/getAllData", (req, res) => {
+  res.send("Admin successfully fetched the data");
+});
+
+app.use("/admin/removeData", (req, res) => {
+  res.send("Admin successfully remove the data");
+});
 
 app.listen(7777, () => {
   console.log("Server is listining at port 7777");
