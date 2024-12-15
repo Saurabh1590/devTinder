@@ -1,6 +1,6 @@
 const adminAuth = (req, res, next) => {
   console.log("user try to access");
-  const token = "xyzhddj";
+  const token = "xyz";
   const isUserAuthorized = token === "xyz";
   if (!isUserAuthorized) {
     res.status(401).send("Unauthorized Access by User");
@@ -10,7 +10,7 @@ const adminAuth = (req, res, next) => {
 };
 
 const userAuth = (req, res, next) => {
-  const token = "xyzdjdh";
+  const token = "xyz";
   const isAdminAuthorized = token === "xyz";
   if (!isAdminAuthorized) {
     res.status(401).send("Unauthorized Access");

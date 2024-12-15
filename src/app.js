@@ -1,26 +1,33 @@
 const express = require("express");
+const connectDB = require("./config/database");
+const User = require("./models/user");
 const app = express();
 
-const { adminAuth, userAuth } = require("./middleware/auth");
+app.post("/signup", async (req, res) => {
+  const user = new User({
+    firstName: "Saurabh",
+    lastName: "Sahani",
+    emailId: "saurabh@12.com",
+    password: "saurabh@123",
+    gender: "male",
+    age: "21",
+  });
 
-app.use("/admin", adminAuth);
-
-app.use("/user/login", (req, res) => {
-  res.send("User Logined");
+  try {
+    await user.save();
+    res.send("data is successfully saved in databse");
+  } catch (err) {
+    res.status(400).send("Error saving the user:" + err.message);
+  }
 });
 
-app.use("/user/getData", userAuth, (req, res) => {
-  res.send("User fetched the data successfully");
-});
-
-app.use("/admin/getAllData", (req, res) => {
-  res.send("Admin successfully fetched the data");
-});
-
-app.use("/admin/removeData", (req, res) => {
-  res.send("Admin successfully remove the data");
-});
-
-app.listen(7777, () => {
-  console.log("Server is listining at port 7777");
-});
+connectDB()
+  .then(() => {
+    console.log("Database connection established");
+    app.listen(7777, () => {
+      console.log("Server is listining at port 7777");
+    });
+  })
+  .catch((err) => {
+    send.err("There was something wrong");
+  });
