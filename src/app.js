@@ -16,13 +16,96 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+// get user using emailId
+app.get("/user", async (req, res) => {
+  const userEmail = req.body.emailId;
+
+  try {
+    const users = await User.find({ emailId: userEmail });
+    if (!users) {
+      res.status(404).send("user not found");
+    } else {
+      res.send(users);
+    }
+  } catch (err) {
+    res.status(400).send("something went wrong");
+  }
+});
+
+// Feed API
+app.get("/feed", async (req, res) => {
+  try {
+    const users = await User.find({});
+    res.send(users);
+  } catch (err) {
+    res.status(400).send("something went wrong");
+  }
+});
+
+// get user using Id
+app.get("/user", async (req, res) => {
+  try {
+    const userId = req.body.id;
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404).send("user not found");
+    } else {
+      res.send(user);
+    }
+  } catch (err) {
+    res.status(400).send("something went wrong");
+  }
+});
+
+// delete the user using userId
+app.delete("/user", async (req, res) => {
+  const userId = req.body.Id;
+  try {
+    await User.findByIdAndDelete(userId);
+    res.send("user deleted successfully");
+  } catch (err) {
+    res.status(400).send("something went wrong");
+  }
+});
+
+//find by Id and Update
+app.patch("/user/updateById", async (req, res) => {
+  const userId = req.body.userId;
+  const data = req.body;
+  try {
+    await User.findByIdAndUpdate({ _id: userId }, data, {
+      returnDocument: "after",
+      runValidators: true,
+    });
+    res.send("user data updated successfully");
+  } catch (err) {
+    res.status(400).send("UPDATE FAILED:" + err.message);
+  }
+});
+
+//find and update using emailId
+app.patch("/user/updateByEmail", async (req, res) => {
+  const emailId = req.body.emailId;
+  const data = req.body;
+  try {
+    const user = await User.findOneAndUpdate({ emailId: emailId }, data, {
+      returnDocument: "after",
+      runValidators: true,
+    });
+    console.log(user);
+    res.send("user data updated successfully");
+  } catch (err) {
+    res.status(400).send("UPDATE FAILED:" + err.message);
+  }
+});
+
 connectDB()
   .then(() => {
-    console.log("Database connection established");
+    console.log("Database connection established...");
     app.listen(7777, () => {
       console.log("Server is listining at port 7777");
     });
   })
   .catch((err) => {
-    send.err("There was something wrong");
+    console.error("Database cannot be connected!!");
   });
