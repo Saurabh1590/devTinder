@@ -69,31 +69,42 @@ app.delete("/user", async (req, res) => {
 });
 
 //find by Id and Update
-app.patch("/user/updateById", async (req, res) => {
-  const userId = req.body.userId;
+app.patch("/user/:userId", async (req, res) => {
+  const userId = req.params?.userId;
   const data = req.body;
-  try {
-    await User.findByIdAndUpdate({ _id: userId }, data, {
-      returnDocument: "after",
-      runValidators: true,
-    });
-    res.send("user data updated successfully");
-  } catch (err) {
-    res.status(400).send("UPDATE FAILED:" + err.message);
-  }
-});
 
-//find and update using emailId
-app.patch("/user/updateByEmail", async (req, res) => {
-  const emailId = req.body.emailId;
-  const data = req.body;
   try {
-    const user = await User.findOneAndUpdate({ emailId: emailId }, data, {
+    const ALLOWED_UPDATES = [
+      "photoUrl",
+      "about",
+      "gender",
+      "age",
+      "skills",
+      "firstName",
+    ];
+    const isUpdateAllowed = Object.keys(data).every((k) =>
+      ALLOWED_UPDATES.includes(k)
+    );
+
+    console.log("Keys in Request Body:", Object.keys(data));
+    console.log("Allowed Updates:", ALLOWED_UPDATES);
+
+    if (!isUpdateAllowed) {
+      throw new Error("Update is not allowed");
+    }
+    if (data?.skills && data.skills.length > 10) {
+      throw new Error("Skills can not be more than 10");
+    }
+    const user = await User.findByIdAndUpdate(userId, data, {
       returnDocument: "after",
       runValidators: true,
     });
-    console.log(user);
-    res.send("user data updated successfully");
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.send("user updated successfully");
   } catch (err) {
     res.status(400).send("UPDATE FAILED:" + err.message);
   }
