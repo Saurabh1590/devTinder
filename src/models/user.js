@@ -41,7 +41,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       default:
         "https://static.vecteezy.com/system/resources/previews/026/966/960/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg",
-      maxLength: 100,
     },
     about: {
       type: String,
