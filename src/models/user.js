@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,12 +19,20 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       unique: true,
       trim: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("Invalid email address: " + value);
+        }
+      },
     },
     password: {
       type: String,
       required: true,
-      minLength: 8,
-      maxLength: 20,
+      validate(value) {
+        if (!validator.isStrongPassword(value)) {
+          throw new Error("Your Password is weak, Enter a Strong Password: " + value);
+        }
+      },
     },
     gender: {
       type: String,
@@ -41,6 +50,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default:
         "https://static.vecteezy.com/system/resources/previews/026/966/960/non_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg",
+      validate(value) {
+        if (!validator.isURL(value)) {
+          throw new Error("Invalid Photo URL: " + value);
+        }
+      },
     },
     about: {
       type: String,
