@@ -1,7 +1,6 @@
 # DevTinder - Backend ⚙️
 
 ![DevTinder Logo](./icon.svg)
-*(Note: Replace with a link to your logo image)*
 
 This is the backend for the **DevTinder** application, a robust and secure RESTful API built with Node.js, Express, and MongoDB. It handles all business logic, data persistence, and user authentication, providing a powerful foundation for the dynamic frontend experience.
 
