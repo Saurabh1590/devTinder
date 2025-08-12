@@ -1,6 +1,6 @@
 # DevTinder - Backend ⚙️
 
-![DevTinder Logo](https://i.imgur.com/your-logo-link.svg)
+![DevTinder Logo](./icon.svg)
 *(Note: Replace with a link to your logo image)*
 
 This is the backend for the **DevTinder** application, a robust and secure RESTful API built with Node.js, Express, and MongoDB. It handles all business logic, data persistence, and user authentication, providing a powerful foundation for the dynamic frontend experience.
@@ -93,6 +93,18 @@ A summary of the core API routes available:
 The backend follows a standard feature-based structure to keep the code organized and maintainable.
 
 
+My sincere apologies for the persistent technical issue. It seems there's a problem with how that specific component is displaying for you.
+
+Let's bypass it completely. Here is the raw Markdown code for the "Project Structure" section. You can copy everything inside the box below and paste it directly into your README.md file.
+
+Markdown
+
+---
+
+## 📁 Project Structure
+
+The backend follows a standard feature-based structure to keep the code organized and maintainable.
+
 /src
 ├── /config
 │   └── database.js      # Handles MongoDB connection
@@ -105,4 +117,7 @@ The backend follows a standard feature-based structure to keep the code organize
 │   ├── auth.js          # Routes for signup, login, logout
 │   ├── profile.js       # Routes for user profile management
 │   ├── request.js       # Routes for handling connection requests
-│   └── user.js
+│   └── user.js          # Routes for the feed and connections
+├── /utils
+│   └── validation.js    # Data validation helper functions
+└── app.js               # Main Express application entry point

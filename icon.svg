@@ -1,0 +1,17 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left Bracket -->
+  <path d="M70,40 L40,100 L70,160" stroke="#8b5cf6" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Right Bracket -->
+  <path d="M130,40 L160,100 L130,160" stroke="#8b5cf6" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Heart -->
+  <path d="M100 125
+           C 118 110, 145 95, 120 70
+           C 110 60, 100 70, 100 80
+           C 100 70, 90 60, 80 70
+           C 55 95, 82 110, 100 125
+           Z"
+        fill="#ef40a7"/>
+</svg>
+
+
+
