@@ -104,6 +104,7 @@ Markdown
 
 The backend follows a standard feature-based structure to keep the code organized and maintainable.
 
+```bash
 src
 ├── config
 │   └── database.js           # Handles MongoDB connection
@@ -120,3 +121,4 @@ src
 ├── utils
 │   └── validation.js         # Data validation helper functions
 └── app.js                    # Main Express application entry point
+```
