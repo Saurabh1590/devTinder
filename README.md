@@ -105,19 +105,19 @@ Markdown
 
 The backend follows a standard feature-based structure to keep the code organized and maintainable.
 
-/src
-├── /config
-│   └── database.js      # Handles MongoDB connection
-├── /middleware
-│   └── auth.js          # JWT authentication middleware
-├── /models
-│   ├── connectionRequest.js # Mongoose schema for connection requests
-│   └── user.js          # Mongoose schema for users
-├── /routes
-│   ├── auth.js          # Routes for signup, login, logout
-│   ├── profile.js       # Routes for user profile management
-│   ├── request.js       # Routes for handling connection requests
-│   └── user.js          # Routes for the feed and connections
-├── /utils
-│   └── validation.js    # Data validation helper functions
-└── app.js               # Main Express application entry point
+src
+├── config
+│   └── database.js           # Handles MongoDB connection
+├── middleware
+│   └── auth.js               # JWT authentication middleware
+├── models
+│   ├── connectionRequest.js  # Mongoose schema for connection requests
+│   └── user.js               # Mongoose schema for users
+├── routes
+│   ├── auth.js               # Routes for signup, login, logout
+│   ├── profile.js            # Routes for user profile management
+│   ├── request.js            # Routes for handling connection requests
+│   └── user.js               # Routes for the feed and connections
+├── utils
+│   └── validation.js         # Data validation helper functions
+└── app.js                    # Main Express application entry point
