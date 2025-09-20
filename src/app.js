@@ -8,6 +8,7 @@ const requestRouter = require("./routes/request");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const cors = require("cors");
+const paymentRouter = require("./routes/payment");
 
 require('dotenv').config();
 
@@ -27,6 +28,7 @@ app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
 app.use("/", userRouter);
+app.use("/", paymentRouter)
 
 const PORT = process.env.PORT || 7777;
 connectDB()
