@@ -78,10 +78,10 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
   }
 });
 
-paymentRouter.get("/payment/verify", userAuth, async (req, res) => {
+paymentRouter.get("/premium/verify", userAuth, async (req, res) => {
   const user = req.user.toJSON();
   if (user && user.isPremium) {
-    return res.json({ ...user });
+    return res.json({ ...user, membershipType: user.membershipType });
   } else {
     return res.json({ ...user });
   }
