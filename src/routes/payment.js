@@ -66,16 +66,24 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
     await payment.save();
 
     // update user isPremium status
-    const user = await User.findById({_id: payment.userId});
+    const user = await User.findById({ _id: payment.userId });
     user.isPremium = true;
     user.membershipType = paymentDetails.notes.membershipType;
     await user.save();
 
     // return success response to razorpay
-    return res.status(200).json({msg: "webhook captures successfully"});
-
+    return res.status(200).json({ msg: "webhook captures successfully" });
   } catch (err) {
     res.status(500).send("ERROR: " + err.message);
+  }
+});
+
+paymentRouter.get("/payment/verify", userAuth, async (req, res) => {
+  const user = req.user.toJSON();
+  if (user && user.isPremium) {
+    return res.json({ ...user });
+  } else {
+    return res.json({ ...user });
   }
 });
 module.exports = paymentRouter;
