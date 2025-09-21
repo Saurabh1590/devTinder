@@ -47,8 +47,8 @@ This is the backend for the **DevTinder** application, a robust and secure RESTf
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/Saurabh1590/devTinder.git](https://github.com/Saurabh1590/devTinder.git)
-    cd devTinder
+    git clone https://github.com/Saurabh1590/devTinder.git
+   cd devTinder
     ```
 
 2.  **Install dependencies:**
