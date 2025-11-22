@@ -19,7 +19,7 @@ require("./utils/cronJob");
 
 app.use(
   cors({
-     origin: "https://shift-swap-frontend.onrender.com",
+    origin: "https://dev-tinder-web-phi.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
