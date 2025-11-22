@@ -19,7 +19,7 @@ require("./utils/cronJob");
 
 app.use(
   cors({
-    origin: "https://dev-tinder-web-phi.vercel.app",
+    origin: ["http://localhost:5173", "https://dev-tinder-web-phi.vercel.app"],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
