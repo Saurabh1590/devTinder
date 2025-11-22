@@ -17,13 +17,32 @@ require("dotenv").config();
 
 require("./utils/cronJob");
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000",
+  "https://dev-tinder-web-phi.vercel.app", // YOUR VERCEL FRONTEND
+];
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://dev-tinder-web-phi.vercel.app"],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    origin: function (origin, callback) {
+      if (!origin) {
+        return callback(null, true); // allow non-browser tools like Postman
+      }
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      console.log("❌ CORS blocked origin:", origin);
+      return callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   })
 );
+
 app.use(express.json());
 app.use(cookieParser());
 
