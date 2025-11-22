@@ -19,7 +19,7 @@ require("./utils/cronJob");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+     origin: "https://shift-swap-frontend.onrender.com",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
